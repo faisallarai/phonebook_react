@@ -1,76 +1,9 @@
-import React,{useState} from 'react';
+import React,{useState} from 'react'
+import Header from './components/Header'
+import SearchForm from './components/SearchForm'
+import ContactForm from './components/ContactForm'
+import Contacts from './components/Contacts'
 
-const Header = ({title}) => <h2>{title}</h2>
-const ContactForm = (props) => {
-  const {
-    addNew,
-    handleNameChange,
-    handlePhoneNumberChange,
-    name,
-    number
-  } = props
-
-  return(
-    <form onSubmit={addNew}>
-      <Label text={'Name:'} />
-      <Input handleChange={handleNameChange} value={name} />
-      <br />
-      <Label text={'Number:'} />
-      <Input handleChange={handlePhoneNumberChange} value={number} />
-      <br />
-      <Button type={'submit'} text={'Add'} />
-    </form>
-  )
-}
-
-const Button = ({text, type, handleClick, id}) => <button id={id} onClick={handleClick} type={type}>{text}</button>
- 
-const Input = ({handleChange, value}) => <input onChange={handleChange} value={value} />
-
-const Label = ({text}) => <label>{text}</label>
-
-const Contact = ({contact, handleDeleteClick}) => {
-
-  return(
-    <tr>
-      <td>{contact.name}</td>
-      <td>{contact.number}</td>
-      <td><Button text={'X'} handleClick={() => handleDeleteClick(contact.id)} /></td>
-    </tr>
-  )
-}
-
-const Contacts = ({contacts, filter, setContacts}) => {
-
-  const isEmpty = (str) => str.length === 0
-
-  const contactsToShow = isEmpty(filter) ? contacts : contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
-
-  const contactList = () => contactsToShow.map(contact => { 
-    const handleDeleteClick = (contact_id) => {
-      const newContacts = contacts.filter(contact => contact.id !== contact_id)
-      setContacts(newContacts)
-    }
-    return(<Contact handleDeleteClick={()=>handleDeleteClick(contact.id)} key={contact.id} contact={contact} />)
-  })
-
-  return(
-    <table>
-      <tbody>
-        {contactList()}
-      </tbody>
-    </table>
-  )
-}
-
-const SearchForm = ({handleFilterChange, filter}) => {
-  return(
-    <form>
-      <Label text={'Filter:'} />
-      <Input handleChange={handleFilterChange} value={filter} />
-    </form>
-  )
-}
 
 const App = (props) => {
 
