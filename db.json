@@ -1,24 +1,34 @@
- {
-    "contacts" : [
-        {
-            "id": 1,
-            "name": "Issaka Faisal",
-            "number": "0244000000"
-        },
-        {
-            "id": 2,
-            "name": "Issaka Aziz",
-            "number": "0244000001"
-        },
-        {
-            "id": 3,
-            "name": "Unaissa Faisal",
-            "number": "0244000002"
-        },
-        {
-            "id": 4,
-            "name": "Ahmed Faisal",
-            "number": "0244000003"
-        }
-    ]
- }
+{
+  "contacts": [
+    {
+      "id": 1,
+      "name": "Issaka Faisal",
+      "number": "0244000000",
+      "active": false
+    },
+    {
+      "id": 2,
+      "name": "Issaka Aziz",
+      "number": "0244000001",
+      "active": false
+    },
+    {
+      "id": 3,
+      "name": "Unaissa Faisal",
+      "number": "0244000002",
+      "active": true
+    },
+    {
+      "id": 4,
+      "name": "Ahmed Faisal",
+      "number": "0244000003",
+      "active": true
+    },
+    {
+      "id": 5,
+      "name": "a new name",
+      "number": "r",
+      "active": false
+    }
+  ]
+}

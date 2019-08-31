@@ -1,23 +1,31 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import Header from './components/Header'
 import SearchForm from './components/SearchForm'
 import ContactForm from './components/ContactForm'
 import Contacts from './components/Contacts'
+import contactService from './services/contacts'
 
 
-const App = (props) => {
+const App = () => {
 
   const [name, setName] = useState('a new name')
   const [number, setNumber] = useState('')
-  const [contacts, setContacts] = useState(props.contacts)
+  const [contacts, setContacts] = useState([])
   const [filter, setFilter] = useState('')
+
+  useEffect(() => {
+    contactService.getAll().then(returnedContacts => {
+      setContacts(returnedContacts)
+    })
+  },[])
 
   const addNew = (event) => {
     event.preventDefault()
     const newContact = {
       id: contacts.length + 1,
       name: name,
-      number: number
+      number: number,
+      active: true
     }
 
     if(isTextEmpty(name)){
@@ -31,9 +39,11 @@ const App = (props) => {
     if(isArrayEmpty(contacts)){
       return alert(`${name} already exist`)
     }
-    setContacts(contacts.concat(newContact))
-    setName('')
-    setNumber('')
+    contactService.create(newContact).then(returnedContact => {
+      setContacts(contacts.concat(returnedContact))
+      setName('')
+      setNumber('')
+    })
   }
 
   const isArrayEmpty = (array) => {
