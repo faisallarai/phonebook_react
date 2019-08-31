@@ -1,12 +1,6 @@
 {
   "contacts": [
     {
-      "id": 1,
-      "name": "Issaka Faisal",
-      "number": "0244000000",
-      "active": false
-    },
-    {
       "id": 2,
       "name": "Issaka Aziz",
       "number": "0244000001",
@@ -23,12 +17,6 @@
       "name": "Ahmed Faisal",
       "number": "0244000003",
       "active": true
-    },
-    {
-      "id": 5,
-      "name": "a new name",
-      "number": "r",
-      "active": false
     }
   ]
 }

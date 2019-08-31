@@ -9,9 +9,15 @@ const Contacts = ({contacts, filter, setContacts}) => {
     const contactsToShow = isEmpty(filter) ? contacts : contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
   
     const deleteContact = (contact_id) => {
-      contactService.remove(contact_id).then(returnedContact => {
-        setContacts(contacts.filter(n => n.id !== contact_id))
-      })
+      const contact = contacts.find(c => c.id === contact_id)
+      if(window.confirm(`Delete ${contact.name} ?`)){
+        contactService.remove(contact_id).then(returnedContact => {
+          setContacts(contacts.filter(n => n.id !== contact_id))
+        }).catch(error => {
+          console.log(error.message)
+        })
+      }
+      
     }
 
     const toggleActive = (contact_id) => {
